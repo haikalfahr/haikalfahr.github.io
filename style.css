@@ -1,0 +1,421 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+}
+
+
+body {
+    background-color: #030300;
+    color: #f5ebda;
+    font-size: 18px;
+    margin: 50px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* .container */
+
+.container {
+    display: grid;
+    gap: 10px;
+    max-width: 100%;
+}
+
+/* Header */
+.header {
+    display: grid;
+    gap: 5px;
+    background-color: #484b4b;
+    padding: 5px;
+    grid-template-areas: 
+    'astronomi astronomi bintang'
+    'astronomi astronomi planet';
+    border-radius: 5px;
+}
+
+
+
+.astronomi {
+    padding: 50px;
+    display: grid;
+    grid-area: astronomi;
+    min-height: 300px;
+    background-image: url(./img/sky2.jpg);
+    background-position: center;
+    background-size: cover;
+    align-content: center;
+    border-radius: 5px;
+
+
+}
+
+.astronomi > * {
+    display: none;
+}
+
+.feature {
+    background-color: whitesmoke;
+    display: grid;
+    place-content: center;
+    text-align: center;
+}
+
+.bintang {
+    grid-area: bintang;
+    color: #f5ebda;
+    background-image: url(./img/sun.jpg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.planet {
+    grid-area: planet;
+    background-image: url(./img/venus.jpg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.header .materi {
+    font-size: 2.5em;
+}
+
+.header .penjelasan-materi {
+    font-size: 1em;
+    text-transform: capitalize;
+}
+
+/* Judul dan Navigasi */
+
+.judul-menu {
+    margin-top: -20px;
+    display: grid;
+    order: -1;
+    grid-template-columns: 1fr 2fr;
+    justify-content: space-between;
+}
+
+.judul menu .judul {
+    font-size: 1.5em;
+}
+
+.judul-menu ul {
+    font-size: 0.8em;
+    display: grid;
+    text-align: center;
+    list-style: none;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 5px;
+}
+
+
+
+a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background-color: #0A0A0A;
+    padding: 5px;
+    border-radius: 10px;
+    text-transform: none;
+    letter-spacing: 1px;
+}
+
+a:hover {
+    color: #DBC8DA;
+}
+
+/* MASALAHNYA DIMANA CUYYYY */
+
+
+
+/* menu-toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    height: 20px;
+    justify-content: space-between;
+    position: relative;
+}
+
+ .menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 28px;
+    background-color: #f5ebda;
+    border-radius: 3px;
+    transition: all 0.5s;
+ }
+
+ .menu-toggle input{
+    position: absolute;
+    height: 40px;
+    width: 28px;
+    cursor: pointer;
+    opacity: 0;
+    top: -10px;
+    z-index: 9999;
+
+}
+
+/* Menu toggle animation */
+.menu-toggle span:nth-child(2) {
+    transform-origin: 0 0;
+}
+
+.menu-toggle span:nth-child(3) {
+    transform-origin: 0 0;
+}
+
+.menu-toggle span:nth-child(4) {
+    transform-origin: 0 100%;
+}
+
+.menu-toggle input:checked ~ span:nth-child(2)  {
+    transform: rotate(45deg) translate(-1px, 0);
+    background-color: #484b4b;
+}
+
+.menu-toggle input:checked ~ span:nth-child(4) {
+    transform: rotate(-45deg) translate(-1px, 0);
+    background-color: #484b4b;
+}
+
+.menu-toggle input:checked ~ span:nth-child(3) {
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* services */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.service {
+    background-color: #0A0A0A;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #f5ebda;
+}
+
+.service .icon {
+    font-size: 1.8em;
+}
+
+.services h3{
+    font-size: 1.3em;
+    padding: 5px;    
+}
+
+
+.services p {
+    font-size: 0.8em;
+    font-weight:300;
+    letter-spacing: 0.5px;
+}
+
+
+/* Galeri */
+.gallery {
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px; 
+}
+
+.gallery h2 {
+    grid-column: 1 / -1;
+}
+
+.gallery img {
+    border: 3px solid #DBC8DA;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive  Break Point*/
+@media (max-width: 1024px) {
+    /* header */
+    .astronomi > * {
+        display: block;
+    }
+    
+    .header .materi {
+        font-size: 1.8em;
+    }   
+    
+    .header .penjelasan-materi {
+        font-size: 0.8em;
+    }
+    
+    /* navigasi */
+    .judul-menu {
+        order: inherit;
+        grid-template-columns: 1fr;
+        margin-top: 0;
+    }
+    
+    .judul-menu .judul {
+        display: none;
+    }  
+    
+
+
+
+
+/*masalahnya cuyyy  */
+}
+
+@media (max-width: 768px) {
+    /* header */
+    .feature {
+        padding: 10px 20px;
+        box-sizing: border-box;
+    }
+    
+    .header .materi {
+        font-size: 1.5em;
+    }   
+    
+    .header .penjelasan-materi {
+        font-size: 0.8em;
+    }   
+
+    /* judul-menu */
+    .menu-toggle {
+        display: flex;
+    }
+
+    .judul-menu {
+        order: -1;
+        justify-items: end;
+    }
+
+    .judul-menu ul{
+        position: absolute;
+        display: flex;
+        right: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #0A0A0A;
+        z-index: 1;
+        transform: translateY(-100%);       
+        transition: all 1s; 
+        opacity: 0;
+    }
+
+    nav ul.slide {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .menu-toggle {
+        z-index: 2;
+    }
+
+
+
+@media (max-width: 600px) {
+    /* header */
+    .header {
+        grid-template-areas: 
+            'astronomi'
+            'bintang'
+            'planet'
+        ;
+    }
+
+    .feature {
+        min-height: 200px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .header .materi {
+        font-size: 1.3em;
+    }   
+    
+    .header .penjelasan-materi {
+        font-size: 0.8em;
+    }   
+
+
+    /* judul-menu */
+    .judul-menu ul{
+        position: absolute;
+        display: flex;
+        right: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: #0A0A0A;
+        z-index: 1;
+        transform: translateY(-100%);       
+        transition: all 1s; 
+        opacity: 0;
+    }
+
+    nav ul.slide {
+        transform: translate(0);
+        opacity: 1;
+    }
+
+    .menu-toggle {
+
+        z-index: 2;
+    }
+}
+}
