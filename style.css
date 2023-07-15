@@ -1,0 +1,38 @@
+.navbar {
+  background-color: #21252b !important;
+}
+
+.jumbotron {
+  background-color: #282c34;
+  padding-top: 10dvh;
+}
+
+.about-me {
+  margin-bottom: 200px;
+}
+
+.about-me .row div {
+  margin: 5px 0;
+}
+
+.about-me .row {
+  margin: 20px 0;
+}
+
+.card .card-text {
+  font-size: 0.9rem;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.my-projects {
+  background-color: #282c34;
+  padding: 50px 20px;
+}
+
+.formulir-pesan {
+  margin: 75px;
+}
