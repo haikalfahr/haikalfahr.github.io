@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AdventureWorks Sales Dashboard</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- Prism.js: dipakai untuk syntax highlighting pada code block di bawah -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+
+		<!-- CSS internal untuk styling code block -->
+		<style>
+			.code-block-wrap {
+				margin: 1.5em 0 2em 0;
+			}
+
+			.code-block-wrap .code-label {
+				font-weight: 600;
+				font-size: 1.05em;
+				margin-bottom: 0.6em;
+			}
+
+			pre[class*="language-"].cafe-code {
+				background: #f6f6f8;
+				border: 1px solid #e5e5ea;
+				border-radius: 10px;
+				padding: 1.4em 1.6em;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+				overflow-x: auto;
+				font-size: 0.92em;
+				line-height: 1.65;
+			}
+
+			pre[class*="language-"].cafe-code code {
+				font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+				text-shadow: none;
+			}
+
+			.cafe-code .token.comment { color: #2e8b57; font-style: italic; }
+			.cafe-code .token.keyword { color: #d6249f; font-weight: 600; }
+			.cafe-code .token.function { color: #d6249f; }
+			.cafe-code .token.string { color: #a31515; }
+			.cafe-code .token.number { color: #098658; }
+			.cafe-code .token.operator { color: #444; }
+			.cafe-code .token.punctuation { color: #444; }
+			.cafe-code .token.column,
+			.cafe-code .token.table,
+			.cafe-code .token.plain { color: #1a1a1a; }
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main" class="logo" target="_blank">View All Projects</a>
+					</header>
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="index.html">Project 1</a></li>
+						<li><a href="project2.html">Project 2</a></li>
+						<li><a href="project3.html">Project 3</a></li>
+						<li class="active"><a href="project4.html">Project 4</a></li>
+					</ul>
+					<ul class="icons">
+						<li><a href="https://www.instagram.com/hafizhaikalfahr/" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+						<li><a href="https://github.com/haikalfahr" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+
+								<header class="major">
+									<h1>AdventureWorks Sales Analysis</h1>
+									<p>Tools: Power BI (Data Modelling, DAX, Visualization)</p>
+								</header>
+								<div class="image main"><img src="content_images/AdventureWorks_Executive_Summary.png" alt="AdventureWorks Executive Summary Dashboard" /></div>
+
+								<p>This project was built while completing the "Microsoft Power BI Desktop for Business Intelligence" course by Maven Analytics on Udemy, using the AdventureWorks Bike Shop dataset. Unlike the other projects here, the focus wasn't on cleaning messy data, but on the full Power BI workflow: connecting and shaping data, building a relational model, writing DAX measures, and designing an interactive dashboard.</p>
+
+								<h2>The Dataset</h2>
+								<p>AdventureWorks Bike Shop is a standard sample dataset covering sales, products, customers, and returns for a fictional bike company operating across the US, Canada, the UK, France, Germany, and Australia. The data was already clean and structured, making it well suited for practicing modelling and visualization rather than data cleaning.</p>
+
+								<h2>Data Model</h2>
+								<div class="image main"><img src="content_images/AdventureWorks_data_modelling.png" alt="AdventureWorks data model diagram" /></div>
+								<p>The dataset was connected and shaped using Power Query, then modeled into a relational structure: a set of transactional tables linked to supporting lookup tables holding descriptive attributes, similar in concept to the star schemas used in the other projects on this site.</p>
+								<p style="margin: 0 0;">The model consists of:</p>
+								<ul>
+									<li><code>Sales Data</code>, the main transactional table (one row per order line)</li>
+									<li><code>Returns Data</code>, transactional returns linked back to products</li>
+									<li><code>Product Lookup</code> and <code>Product Categories Lookup</code>, product details and category</li>
+									<li><code>Customer Lookup</code>, customer demographics</li>
+									<li><code>Calendar Lookup</code>, a date dimension supporting time intelligence</li>
+								</ul>
+
+								<h2>Visuals &amp; Interactivity</h2>
+								<p>The dashboard combines standard visuals with several of Power BI's more interactive and AI-powered features:</p>
+								<p style="margin: 0 0;"><strong>Core visuals:</strong></p>
+								<ul>
+									<li>KPI cards and multi-row cards for headline metrics</li>
+									<li>Gauge charts for target-vs-actual tracking</li>
+									<li>Line, area, donut, and clustered bar charts</li>
+									<li>Table and matrix visuals with conditional formatting</li>
+									<li>Map visuals for geographic breakdowns</li>
+								</ul>
+								<p style="margin: 0 0;"><strong>Interactivity &amp; parameters:</strong></p>
+								<ul>
+									<li>A numeric range parameter (price adjustment slider) driving downstream DAX measures</li>
+									<li>A field parameter, letting users switch the metric shown in a chart (Orders, Revenue, Profit, or Return Rate) without duplicating visuals</li>
+									<li>Slicers and custom action buttons for navigation</li>
+									<li>Bookmarks, used to reset all slicers back to their default view</li>
+									<li>Drillthrough from any product to a dedicated Product Detail page</li>
+									<li>Custom tooltip pages, shown on hover instead of default tooltips</li>
+								</ul>
+								<p style="margin: 0 0;"><strong>AI visuals:</strong></p>
+								<ul>
+									<li>Trend line and anomaly detection on the monthly revenue chart</li>
+									<li>Decomposition Tree for interactive, multi-dimensional breakdowns</li>
+									<li>An automatically generated smart narrative summarizing trends</li>
+								</ul>
+
+								<h2>DAX &amp; Visual Highlights</h2>
+								<p>A closer look at how a few key components on the dashboard were built, from measure to visual:</p>
+
+								<h3>1. KPI Cards</h3>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_KPI_Cards.png" alt="AdventureWorks KPI cards" /></div>
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">Total Revenue = SUMX('Sales Data', 'Sales Data'[OrderQuantity] * RELATED('Product Lookup'[ProductPrice]))
+Total Profit  = [Total Revenue] - [Total Cost]
+Total Orders  = DISTINCTCOUNT('Sales Data'[SalesOrderNumber])
+Return Rate   = DIVIDE([Total Return], [Total Orders])</code></pre>
+</div>
+								<p><strong>Visual:</strong> Built with standard Card visuals, formatted with a dark background, large bold values, and a small label underneath, then grouped together as a single row at the top of the page.</p>
+								<p><strong>DAX:</strong> Each card is backed by a dedicated measure, aggregating the full <code>Sales Data</code> and <code>Returns Data</code> tables under whatever filters are active on the page.</p>
+
+								<h3>2. Monthly Target</h3>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Monthly_Target.png" alt="AdventureWorks monthly target gauges" /></div>
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">Order Target   = [Previous Month Orders] * 1.1
+Revenue Target = [Previous Month Revenue] * 1.1
+Profit Target  = [Previous Month Profit] * 1.1</code></pre>
+</div>
+								<p><strong>Visual:</strong> Gauge charts, with the actual measure as the value, the target measure as the target line, and the maximum set relative to the target so the gauge scales sensibly month to month.</p>
+								<p><strong>DAX:</strong> Each gauge compares an actual measure against a target measure, with the target derived from a prior period rather than hardcoded.</p>
+
+								<h3>3. Revenue Trend Chart</h3>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Revenue_Trend.png" alt="AdventureWorks revenue trend chart" /></div>
+								<p><strong>Visual:</strong> A line chart with the Analytics pane's trend line and anomaly detection turned on, which automatically fits a trend and flags months that deviate from the expected pattern, without any extra DAX required.</p>
+								<p><strong>DAX:</strong> The chart itself only needs <code>Total Revenue</code> plotted against the date hierarchy from <code>Calendar Lookup</code>; the interesting part happens in the visual layer.</p>
+
+								<h3>4. What-If Simulation</h3>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_WhatIf_Simulation.png" alt="AdventureWorks what-if price adjustment simulation" /></div>
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">Price Adjustment % Value = 'Price Adjustment %'[Price Adjustment % Value]
+
+Adjusted Price   = [Average Retail Price] * (1 + [Price Adjustment % Value])
+Adjusted Revenue = SUMX('Sales Data', 'Sales Data'[OrderQuantity] * [Adjusted Price])
+Adjusted Profit  = [Adjusted Revenue] - [Total Cost]</code></pre>
+</div>
+								<p><strong>Visual:</strong> A slider control lets the user set a price adjustment percentage, which flows into the DAX chain above. The chart below plots <code>Total Profit</code> against <code>Adjusted Profit</code> side by side, so the impact of the simulated price change is visible immediately, without needing to change any of the underlying data.</p>
+								<p><strong>DAX:</strong> The what-if parameter is exposed as a single-column table, whose value scales the adjusted measures used throughout the Product Detail page.</p>
+
+								<h3>5. Field Parameter Selector</h3>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Field_Parameter.png" alt="AdventureWorks field parameter metric selector" /></div>
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">Product Metric Selection = {
+    ("Orders", NAMEOF('Measure Table'[Total Orders]), 0),
+    ("Revenue", NAMEOF('Measure Table'[Total Revenue]), 1),
+    ("Profit", NAMEOF('Measure Table'[Total Profit]), 2),
+    ("Return", NAMEOF('Measure Table'[Total Return]), 3),
+    ("Rate", NAMEOF('Measure Table'[Return Rate]), 4)
+}</code></pre>
+</div>
+
+								<p><i>This reflects the standard pattern Power BI generates for a field parameter; the exact table wasn't recoverable from the model script.</i></p>
+								<p><strong>Visual:</strong> A set of radio buttons lets the user choose which metric (Orders, Revenue, Profit, Return, or Rate) the chart below should plot, without needing five separate charts or duplicated visuals.</p>
+								<p><strong>DAX:</strong> A field parameter generates its own small table behind the scenes, mapping each selectable option to the underlying column or measure it should display.</p>
+
+
+
+								<h2>The Dashboard</h2>
+
+								<h3>1. Executive Summary</h3>
+								<p style="margin: 0 0;">The <strong>Executive Summary</strong> page covers overall revenue, profit, orders, and return rate, with monthly trends and a category breakdown.</p>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Executive_Summary.png" alt="AdventureWorks Executive Summary" /></div>
+
+								<h3>2. Map</h3>
+								<p style="margin: 0 0;">The <strong>Map</strong> page shows revenue distribution by country, filterable by region.</p>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Map.png" alt="AdventureWorks Map page" /></div>
+
+								<h3>3. Product Detail</h3>
+								<p style="margin: 0 0;">The <strong>Product Detail</strong> page supports drillthrough from any product, with a what-if parameter to simulate the impact of a price adjustment, and an automated narrative summary generated by Power BI.</p>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Product_Detail.png" alt="AdventureWorks Product Detail page" /></div>
+
+								<h3>4. Customer Detail</h3>
+								<p style="margin: 0 0;">The <strong>Customer Detail</strong> page breaks down customers by income level and occupation, with a searchable top-customer table.</p>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Customer_Detail.png" alt="AdventureWorks Customer Detail page" /></div>
+
+								<h3>5. Decomposition Tree</h3>
+								<p style="margin: 0 0;">The <strong>Decomposition Tree</strong> visual allows interactive root-cause analysis, breaking down aggregate metrics like <code>Total Orders</code> (25K) across hierarchical categories such as Category, Subcategory, and Product Name to uncover sales distribution drivers.</p>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Decomposition_Tree.png" alt="AdventureWorks Decomposition Tree" /></div>
+
+								<h3>6. Key Influencers</h3>
+								<p style="margin: 0 0;">The <strong>Key Influencers</strong> visual leverages Power BI's AI capabilities to automatically identify key drivers and customer segments (such as analyzing factors influencing homeownership likelihood and variables driving increases in average retail price).</p>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Key_Influencers.png" alt="AdventureWorks Key Influencers" /></div>
+
+								<h3>7. Data Documentation (Hidden)</h3>
+								<p style="margin: 0 0;">The <strong>Data Documentation</strong> page acts as a data dictionary within the report, providing a searchable index of all measures, columns, tables, and relationships alongside their descriptions and DAX expressions.</p>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Data_Documentation.png" alt="AdventureWorks Data Documentation page" /></div>
+
+								<h3>8. Tooltip Page (Hidden)</h3>
+								<p style="margin: 0 0;"> A custom <strong>Tooltip Page</strong> that appears when hovering over the Revenue Trend chart on the Executive Summary page, displaying key business KPIs alongside weekly order trends for quick contextual analysis. </p>
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/AdventureWorks_Tooltip.png" alt="AdventureWorks Tooltip Page" /></div>
+
+								<h2>Key Insights</h2>
+								<ul>
+									<li>Total revenue reached $24.9M with a 2.2% return rate</li>
+									<li>Accessories had the highest order volume among all categories</li>
+									<li>The United States generated the highest revenue by country</li>
+									<li>Customers in the "Average" income bracket placed the most orders</li>
+								</ul>
+
+								<h2>View the Full Project</h2>
+								<p style="margin: 0 0;">The complete project, including all Excel files and formulas, is available on GitHub.</p>
+								<ul>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%204%20-%20AdventureWorks%20Sales%20Analysis/01_Raw_Data" target="_blank">01_Raw_Data</a></li>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%204%20-%20AdventureWorks%20Sales%20Analysis/02_Logo" target="_blank">02_Logo</a></li>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%204%20-%20AdventureWorks%20Sales%20Analysis/03_Dashboard" target="_blank">03_Dashboard</a></li>
+								</ul>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>Jl. Rawa Sawah II No. 6<br />
+								DKI Jakarta, Jakarta Pusat</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p>081211351830</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p>hafizhaikalfahreza@gmail.com</p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.instagram.com/hafizhaikalfahr/" class="icon brands alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+									<li><a href="https://github.com/haikalfahr" class="icon brands alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Hafiz Haikal Fahreza</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<!-- Prism.js: syntax highlighting -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+	</body>
+</html>
