@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Project 3 - Retail Sales Performance Analysis with Excel</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- Prism.js: dipakai untuk syntax highlighting pada code block di bawah -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+
+		<!-- CSS internal untuk styling code block -->
+		<style>
+			.code-block-wrap {
+				margin: 1.5em 0 2em 0;
+			}
+
+			.code-block-wrap .code-label {
+				font-weight: 600;
+				font-size: 1.05em;
+				margin-bottom: 0.6em;
+			}
+
+			pre[class*="language-"].cafe-code {
+				background: #f6f6f8;
+				border: 1px solid #e5e5ea;
+				border-radius: 10px;
+				padding: 1.4em 1.6em;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+				overflow-x: auto;
+				font-size: 0.92em;
+				line-height: 1.65;
+			}
+
+			pre[class*="language-"].cafe-code code {
+				font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+				text-shadow: none;
+			}
+
+			.cafe-code .token.comment { color: #2e8b57; font-style: italic; }
+			.cafe-code .token.keyword { color: #d6249f; font-weight: 600; }
+			.cafe-code .token.function { color: #d6249f; }
+			.cafe-code .token.string { color: #a31515; }
+			.cafe-code .token.number { color: #098658; }
+			.cafe-code .token.operator { color: #444; }
+			.cafe-code .token.punctuation { color: #444; }
+			.cafe-code .token.column,
+			.cafe-code .token.table,
+			.cafe-code .token.plain { color: #1a1a1a; }
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main" class="logo" target="_blank">View All Projects</a>
+					</header>
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="index.html">Project 1</a></li>
+						<li><a href="project2.html">Project 2</a></li>
+						<li class="active"><a href="project3.html">Project 3</a></li>
+						<li><a href="project4.html">Project 4</a></li>
+					</ul>
+					<ul class="icons">
+						<li><a href="https://www.instagram.com/hafizhaikalfahr/" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+						<li><a href="https://github.com/haikalfahr" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+					</ul>
+				</nav>
+
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+
+								<header class="major">
+									<h1>Retail Sales Performance Analysis</h1>
+									<p>Tools: Excel (Data Profiling, Cleaning, Modelling &amp; Visualization)</p>
+								</header>
+								<div class="image main" style="margin: 0 0;"><img src="content_images/Superstore_before_raw_sales.png" alt="Superstore_before_after_data_cleaning.pngashboard" /></div>
+								<div class="image main" style="margin: 0 0;"><img src="content_images/Superstore_after_clean_sales.png" alt="Superstore_before_after_data_cleaning.pngashboard" /></div>
+								
+								<p style="margin: 1em 0 0 0;">Key Excel features used in this project:</p>
+								<ul>
+									<li>Structured Tables with dynamic column references</li>
+									<li>Text functions: TRIM, CLEAN, SUBSTITUTE, TEXTBEFORE/TEXTAFTER</li>
+									<li>Lookup functions: VLOOKUP, XLOOKUP, MINIFS</li>
+									<li>Array formulas for conditional bucketing</li>
+									<li>Power Query for data import</li>
+									<li>Power Pivot with a relational data model and DAX measures</li>
+								</ul>
+
+								<p>This project takes the entire pipeline, from raw data to dashboard, was built in Excel. A messy retail sales dataset was profiled and cleaned using structured formulas (with every transformation step kept visible for audit purposes), modeled into a relational structure using Power Pivot, and visualized in an interactive dashboard.</p>
+
+								<p style="margin: 0 0;">The project includes:</p>
+								<ul>
+									<li>Raw data ingestion via Power Query</li>
+									<li>Formula-based data profiling and cleaning, with a full audit trail per column</li>
+									<li>A relational data model built with Power Pivot and DAX measures</li>
+									<li>An interactive Excel dashboard with PivotCharts and slicers</li>
+								</ul>
+
+								<h2>The Dataset</h2>
+								<p>The dataset used in this project is based on the <a href="https://www.kaggle.com/datasets/anirudhchauhan/retail-store-inventory-forecasting-dataset" target="_blank">Retail Store Inventory Forecasting Dataset</a>, publicly available on Kaggle. The original data was modified with the help of Claude AI to intentionally introduce messiness, simulating the kind of inconsistencies found in manually recorded retail data.</p>
+								<p>The dataset contains retail sales transactions, including transaction ID, customer ID, customer demographics (gender and age), product category, quantity, price per unit, and total amount.</p>
+								<p>The raw data included inconsistencies typical of manually recorded retail data: mixed date formats, inconsistent capitalization, extra whitespace, currency symbols mixed into numeric fields, and missing values in quantity, price, and total amount.</p>
+
+								<h2>Project Architecture</h2>
+								<p>The project follows the same layered approach as the other two projects, adapted to an Excel workflow:</p>
+								<ol>
+									<li><strong>Raw Layer:</strong> the original data, imported and kept untouched.</li>
+									<li><strong>Staging Layer:</strong> data profiled and cleaned through a visible, step-by-step formula chain.</li>
+									<li><strong>Data Warehouse Layer:</strong> data modeled into a relational structure using Power Pivot.</li>
+									<li><strong>Consumption Layer:</strong> an interactive dashboard built from the model.</li>
+								</ol>
+
+								<h3>A. Raw Layer</h3>
+								<p>The raw CSV file was imported using Power Query and kept in its own sheet, untouched, so every later transformation could always be traced back to the original values.</p>
+
+<h3>B. Staging Layer</h3>
+<p>Every column was cleaned through a chain of formulas, with each transformation step kept in its own column instead of overwriting the previous one. This made it possible to trace exactly where and how a value changed, from the raw input to the final cleaned result.</p>
+
+<h4>Example 1: Product Category</h4>
+<p>A simple case: removing extra whitespace and standardizing capitalization.</p>
+
+<div class="image main" style="margin: 0 0;"><img src="content_images/Superstore_product_category.png" alt="Superstore Product Category" /></div>
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">Product_Category_Whitespace_Removed:
+=CLEAN(TRIM([@[Product Category]]))
+
+Product_Category_Standardized_FINAL:
+=PROPER([@Product_Category_Whitespace_Removed])</code></pre>
+</div>
+<p><i>Source: 02_Data_Processing.xlsx, "Working Sales" sheet</i></p>
+
+<h4>Example 2: Customer ID</h4>
+<p>A format validation case: each Customer ID was expected to follow a "CUST" prefix followed by numbers, with no dashes. IDs that didn't match this format were still standardized rather than rejected.</p>
+
+<div class="image main" style="margin: 0 0;"><img src="content_images/Superstore_customer_id.png" alt="Superstore Customer ID" /></div>
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">Customer_ID_Whitespace_Removed:
+=CLEAN(TRIM([@[Customer ID]]))
+
+Customer_ID_Check_No_Dash_Format:
+=IF(
+   AND(
+      EXACT(LEFT([@[Customer ID]],4),"CUST"),
+      ISNUMBER(TEXTAFTER([@[Customer ID]],"CUST")),
+      ISERROR(FIND("-",[@[Customer ID]]))
+   ),
+   [@Customer_ID_Whitespace_Removed],
+   "INVALID"
+)
+
+Customer_ID_Dash_Removed_Uppercased_FINAL:
+=IF(
+   [@Customer_ID_Check_No_Dash_Format]="INVALID",
+   UPPER(SUBSTITUTE([@Customer_ID_Whitespace_Removed],"-","")),
+   [@Customer_ID_Whitespace_Removed]
+)</code></pre>
+</div>
+<p><i>Source: 02_Data_Processing.xlsx, "Working Sales" sheet</i></p>
+
+<h4>Example 3: Date</h4>
+<p>A more complex case: the raw data mixed three different date formats (<code>MM/DD/YYYY</code>, <code>YYYY-MM-DD</code>, and <code>"Month Name DD, YYYY"</code>). Each format was tested in sequence, falling through to the next parsing method if the previous one failed.</p>
+
+<div class="image main" style="margin: 0 0;"><img src="content_images/Superstore_date.png" alt="Superstore Date" /></div>
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">Date_Format_Check:
+=IF(ISNUMBER(--[@Date_Whitespace_Removed]),
+   DATE(YEAR(--[@Date_Whitespace_Removed]), MONTH(--[@Date_Whitespace_Removed]), DAY(--[@Date_Whitespace_Removed])),
+   "INVALID")
+
+Date_Parse_as_MMDDYYYY:
+=IFERROR(
+   IF([@Date_Format_Check]="INVALID",
+      DATE(RIGHT([@Date_Whitespace_Removed],4), LEFT([@Date_Whitespace_Removed],2), MID([@Date_Whitespace_Removed],4,2)),
+      [@Date_Format_Check]),
+   "INVALID")
+
+Date_Parse_Month_Name_FINAL:
+=IFERROR(
+   IF([@Date_Parse_as_MMDDYYYY]="INVALID",
+      DATE(
+         RIGHT([@Date_Whitespace_Removed],4),
+         MATCH(TEXTBEFORE([@Date_Whitespace_Removed]," ",1),
+               {"January";"February";"March";"April";"May";"June";
+                "July";"August";"September";"October";"November";"December"},0),
+         RIGHT(TEXTBEFORE([@Date_Whitespace_Removed],","),2)
+      ),
+      [@Date_Parse_as_MMDDYYYY]),
+   "INVALID")</code></pre>
+</div>
+<p><i>Source: 02_Data_Processing.xlsx, "Working Sales" sheet</i></p>
+
+<h4>Example 4: Price per Unit</h4>
+<p>A three-layer case: removing currency symbols, fixing decimal separators, and repopulating missing values using the relationship between total amount and quantity.</p>
+
+<div class="image main" style="margin: 0 0;"><img src="content_images/Superstore_price_per_unit.png" alt="Superstore Price per Unit" /></div>
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">Price_Per_Unit_Whitespace_Removed:
+=CLEAN(TRIM([@[Price per Unit]]))
+
+Price_Per_Unit_Dollar_Sign_Removed:
+=INT(SUBSTITUTE([@Price_Per_Unit_Whitespace_Removed],"$",""))
+
+Price_Per_Unit_Decimal_Separator_Fixed:
+=INT(
+   IFERROR(
+      [@Price_Per_Unit_Dollar_Sign_Removed],
+      SUBSTITUTE([@Price_Per_Unit_Whitespace_Removed],".",",")
+   )
+)
+
+Price_Per_Unit_Repopulate_Missing_Values_With_Calculation_FINAL:
+=IFERROR(
+   [@Price_Per_Unit_Decimal_Separator_Fixed],
+   [@Total_Amount_Converted_To_Integer] / [@Quantity_Converted_To_Integer]
+)</code></pre>
+</div>
+<p><i>Source: 02_Data_Processing.xlsx, "Working Sales" sheet</i></p>
+
+								<p>The same step-by-step pattern (remove whitespace, standardize format, convert data types, and repopulate missing values where possible) was applied across every remaining column before the results were consolidated into a single clean table using Power Query by selecting all columns whose names end with "FINAL".</p>
+								<div class="image main" ><img src="content_images/Superstore_Clean_Final.png" alt="Superstore Clean Final" /></div>
+
+
+
+								<h3>C. Data Warehouse Layer</h3>
+								<p>The cleaned data was restructured into a relational model using Power Pivot, similar in spirit to a star schema: a central fact table holding transaction-level data, linked to supporting tables holding descriptive attributes.</p>
+
+								<p style="margin: 0 0;">The model consists of:</p>
+								<ul>
+									<li><code>Sales_Performance</code>, the fact table (one row per transaction)</li>
+									<li><code>Customer_Details</code>, built with VLOOKUP and XLOOKUP against the fact table</li>
+									<li><code>Calendar_Table</code>, a date dimension supporting time-based analysis</li>
+								</ul>
+
+								<div class="image main" style="margin: 1em 0;"><img src="content_images/Superstore_data_model_relationships.png" alt="Power Pivot relationship diagram" /></div>
+								<p class="cs-caption" style="text-align:center; font-size:0.85em; color:#888;">Relationship diagram from Power Pivot's Diagram View</p>
+
+								<p>On top of this model, DAX measures were written in Power Pivot to calculate metrics such as total revenue, total orders, and average order value, which were then used directly in the dashboard's PivotTables and PivotCharts.</p>
+
+								<h3>D. Consumption Layer</h3>
+								<p>The data model was connected to an interactive Excel dashboard, built from PivotTables and PivotCharts driven by the DAX measures.</p>
+
+								<p style="margin: 0 0;">The dashboard includes:</p>
+								<ul>
+									<li>KPI cards for total revenue, orders, customers, and average order value</li>
+									<li><strong>Revenue per Month:</strong> a line chart of monthly revenue trends</li>
+									<li><strong>Order and AOV by Age Group:</strong> a combo chart comparing order volume and average order value across age groups</li>
+									<li><strong>Orders by Gender</strong> and <strong>Customers by Type:</strong> doughnut charts</li>
+									<li><strong>Revenue by Category:</strong> a horizontal bar chart</li>
+									<li>Slicers for filtering by category and year</li>
+								</ul>
+
+								<div class="image main" style="margin: 1em 0 2em 0;"><img src="content_images/Superstore_dashboard.png" alt="Superstore Dashboard" /></div>
+
+								<p style="margin: 0 0;"><strong>Key insights:</strong></p>
+								<ul>
+									<li>Electronics generated the highest revenue among all product categories</li>
+									<li>Order volume and average order value were fairly consistent across age groups, with 45 to 54 placing highest in both</li>
+									<li>The customer base was close to evenly split between one-time and repeat customers</li>
+								</ul>
+
+								<h2>View the Full Project</h2>
+								<p style="margin: 0 0;">The complete project, including all Excel files and formulas, is available on GitHub.</p>
+								<ul>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%203%20-%20Retail%20Sales%20Performance%20Analysis" target="_blank">Full Repository</a></li>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%203%20-%20Retail%20Sales%20Performance%20Analysis/01_Raw_Data.xlsx" target="_blank">01_Raw_Data</a></li>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%203%20-%20Retail%20Sales%20Performance%20Analysis/02_Data_Processing.xlsx" target="_blank">02_Data_Processing</a></li>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%203%20-%20Retail%20Sales%20Performance%20Analysis/03_Data_Modelling_and_Visualization.xlsx" target="_blank">03_Data_Modelling_and_Visualization</a></li>
+								</ul>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>Jl. Rawa Sawah II No. 6<br />
+								DKI Jakarta, Jakarta Pusat</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p>081211351830</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p>hafizhaikalfahreza@gmail.com</p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.instagram.com/hafizhaikalfahr/" class="icon brands alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+									<li><a href="https://github.com/haikalfahr" class="icon brands alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Hafiz Haikal Fahreza</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<!-- Prism.js: syntax highlighting -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+	</body>
+</html>

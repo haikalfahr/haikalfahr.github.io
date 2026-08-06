@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Project 2 - Cafe Sales Performance Analysis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- Prism.js: dipakai untuk syntax highlighting pada code block SQL di bawah -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+
+		<!-- CSS internal untuk styling code block ala screenshot -->
+		<style>
+			.code-block-wrap {
+				margin: 1.5em 0 2em 0;
+			}
+
+			.code-block-wrap .code-label {
+				font-weight: 600;
+				font-size: 1.05em;
+				margin-bottom: 0.6em;
+			}
+
+			pre[class*="language-"].cafe-code {
+				background: #f6f6f8;
+				border: 1px solid #e5e5ea;
+				border-radius: 10px;
+				padding: 1.4em 1.6em;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+				overflow-x: auto;
+				font-size: 0.92em;
+				line-height: 1.65;
+			}
+
+			pre[class*="language-"].cafe-code code {
+				font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+				text-shadow: none;
+			}
+
+			/* Warna token disesuaikan agar mirip contoh: hijau untuk komentar, pink/magenta untuk keyword */
+			.cafe-code .token.comment { color: #2e8b57; font-style: italic; }
+			.cafe-code .token.keyword { color: #d6249f; font-weight: 600; }
+			.cafe-code .token.function { color: #d6249f; }
+			.cafe-code .token.string { color: #a31515; }
+			.cafe-code .token.number { color: #098658; }
+			.cafe-code .token.operator { color: #444; }
+			.cafe-code .token.punctuation { color: #444; }
+			.cafe-code .token.column,
+			.cafe-code .token.table,
+			.cafe-code .token.plain { color: #1a1a1a; }
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				
+				<!-- Header -->
+				<header id="header">
+					<a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main" class="logo" target="_blank">View All Projects</a>					
+				</header>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="index.html">Project 1</a></li>
+						<li class="active"><a href="project2.html">Project 2</a></li>
+						<li><a href="project3.html">Project 3</a></li>
+						<li><a href="project4.html">Project 4</a></li>
+					</ul>
+					<ul class="icons">
+						<li><a href="https://www.instagram.com/hafizhaikalfahr/" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+						<li><a href="https://github.com/haikalfahr" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+
+								<header class="major">
+									<h1>Cafe Sales Performance Analysis</h1>
+									<p>Tools: MySQL (Data Profiling, Cleaning, & Modelling) · Power BI (Visualization)</p>
+								</header>
+								<div class="image main"><img src="content_images/Cafe_Sales_Dashboard.jpg" alt="Cafe Sales Dashboard" /></div>
+
+								<p>Organizations generate large volumes of transactional data every day, but raw operational data is often inconsistent, incomplete, and unsuitable for analysis. To support reliable reporting and decision-making, this data must first be cleaned, standardized, and organized into a structured analytical model.</p>
+								<p>In this project, I built a mini end-to-end data warehouse pipeline using a dirty dataset, simulating how raw transactional data is transformed through raw, staging, and curated layers into a star schema designed for business intelligence. The final analytical model is then used to power an interactive Power BI dashboard for business reporting and decision-making.</p>
+								<p style="margin: 0 0;">The project includes:</p>
+								<ul>
+									<li>Data ingestion from raw CSV file</li>
+									<li>SQL-based data cleaning and recovery</li>
+									<li>A dimensional star schema data model</li>
+									<li>A Power BI dashboard for analytics and insights</li>
+								</ul>
+
+								<h2>The Dataset</h2>
+								<p>The dataset used in this project is the Dirty Cafe Sales Dataset, publicly available on Kaggle.</p>
+								<p>Dataset link: <br><a href="https://www.kaggle.com/datasets/ahmedmohamed2003/cafe-sales-dirty-data-for-cleaning-training/data" target="_blank">"https://www.kaggle.com/datasets/ahmedmohamed2003/cafe-sales-dirty-data-for-cleaning-training/data" </a></p>
+								<p>The dataset contains 10,000 synthetic point-of-sale transactions from a cafe, designed to simulate day-to-day sales activity. It consists of a single transactional table with eight columns covering products, quantities, prices, payment methods, locations, and transaction dates. Because the data intentionally includes missing values, inconsistencies, and invalid records, it is well suited for practicing data cleaning, data quality management, and building analytical data pipelines.</p>
+
+								<h2>Project Architecture</h2>
+								<p>The project follows a typical data warehouse architecture with the following layers:</p>
+								<ol>
+									<li><strong>Raw Layer:</strong> original transactional data imported from the source.</li>
+									<li><strong>Staging Layer:</strong> data profiled, cleaned, and transformed to improve quality and consistency.</li>
+									<li><strong>Data Warehouse Layer: </strong> data modeled into a star schema, focused on the analytical needs of a specific business area or department</li>
+									<li><strong>Consumption Layer:</strong> interactive dashboards and reports for business users.</li>
+								</ol>
+
+
+								<h3>A. Raw Layer</h3>
+								<p>This layer contains the original transactional data imported from the source systems. The data is stored in its raw format without any transformations.</p>
+
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">
+-- Import the File: dirty_cafe_sales.csv and rename it into raw_data
+-- I imported the file through GUI
+ALTER TABLE dirty_cafe_sales
+RENAME TO raw_data;
+
+-- Brief exploration on raw data
+DESC raw_data;
+
+SELECT * FROM raw_data;
+
+SELECT COUNT(*) AS total_records
+FROM raw_data;
+
+</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%202%20-%20Cafe%20Sales%20Performance%20Analysis/02_Scripts/01_initialization.sql" target="_blank">Source: Scripts/01_initialization.sql</a></i></p>
+
+								<h3>B. Staging Layer</h3>
+								<p>The staging layer transforms raw data into a clean, analysis-ready dataset. A staging table was created as a copy of the raw data, then each column was profiled, cleaned, and repopulated where possible. Records that still couldn't be recovered were isolated and flagged instead of being deleted.</p>						
+							
+								<h4>Data quality checking and cleaning</h4>	
+								<p>This step identifies and resolves data quality issues within the staging table, ensuring each column follows a consistent format and type before further processing.</p>	
+								<p style="margin: 0 0;">In this step, I performed the following key actions:</p>
+								<ul>
+									<li>Column standardization</li>
+									<li>Duplicate check</li>
+									<li>Format inconsistency check</li>
+									<li>Data type conversion</li>
+									<li>Missing value recovery</li>
+									<li>Invalid data isolation</li>
+								</ul>			
+								<h5>Example of quality checking and cleaning step: price_per_unit column:</h5>
+								
+
+
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">-- Standardize Column Names
+ALTER TABLE staging_data
+    RENAME COLUMN `Price Per Unit` TO price_per_unit;
+
+-- Check for Format Inconsistencies
+SELECT DISTINCT price_per_unit FROM staging_data;
+-- Finding: no formatting issues, but blank, UNKNOWN, and ERROR values were present
+
+UPDATE staging_data
+SET price_per_unit = CASE 
+    WHEN price_per_unit IN ('', 'UNKNOWN', 'ERROR') THEN NULL 
+    ELSE price_per_unit 
+    END;
+
+-- Data Type Conversion
+ALTER TABLE staging_data
+    MODIFY price_per_unit DECIMAL(10,2);
+
+-- Repopulate Missing Values based on its item
+-- (each item maps to a unique price_per_unit)
+UPDATE staging_data
+SET price_per_unit = CASE item
+    WHEN 'Cookie' THEN 1
+    WHEN 'Tea' THEN 1.5
+    WHEN 'Coffee' THEN 2
+    WHEN 'Salad' THEN 5
+    END
+WHERE price_per_unit IS NULL;
+
+-- Repopulate remaining values using quantity and total_spent
+UPDATE staging_data
+SET price_per_unit = (total_spent / quantity)
+WHERE price_per_unit IS NULL;
+
+-- Isolate Invalid Records that still couldn't be recovered
+INSERT invalid_data
+SELECT * FROM staging_data
+WHERE price_per_unit IS NULL;
+
+DELETE FROM staging_data
+WHERE price_per_unit IS NULL;</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%202%20-%20Cafe%20Sales%20Performance%20Analysis/02_Scripts/02_data_cleaning.sql" target="_blank">Source: Scripts/02_data_cleaning.sql</a></i></p>
+
+								
+							<h4>Invalid Data Flagging</h4>	
+							<p>After invalid records were isolated into the invalid_data table, each one was flagged using a boolean column per attribute, marking exactly which field caused it to be invalid.</p>
+
+
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">-- add invalid flag column for each column in invalid_data table
+
+ALTER TABLE invalid_data 
+ADD COLUMN invalid_item BOOLEAN NOT NULL DEFAULT FALSE ,
+ADD COLUMN invalid_quantity BOOLEAN NOT NULL DEFAULT FALSE ,
+ADD COLUMN invalid_price_per_unit BOOLEAN NOT NULL DEFAULT FALSE,
+ADD COLUMN invalid_total_spent BOOLEAN NOT NULL DEFAULT FALSE,
+ADD COLUMN invalid_payment_method BOOLEAN NOT NULL DEFAULT FALSE,
+ADD COLUMN invalid_location BOOLEAN NOT NULL DEFAULT FALSE,
+ADD COLUMN invalid_transaction_date BOOLEAN NOT NULL DEFAULT FALSE;
+
+
+-- Populate invalid flags
+
+UPDATE invalid_data
+SET
+    invalid_item = item IS NULL,
+    invalid_quantity = quantity IS NULL,
+    invalid_price_per_unit = price_per_unit IS NULL,
+    invalid_total_spent = total_spent IS NULL,
+    invalid_payment_method = payment_method IS NULL,
+    invalid_location = location IS NULL,
+    invalid_transaction_date = transaction_date IS NULL;
+
+SELECT * FROM invalid_data;
+
+-- Complete the quantiative fields
+
+	-- Fill quantity
+
+		UPDATE invalid_data
+		SET quantity = total_spent / price_per_unit
+		WHERE quantity IS NULL
+		  AND total_spent IS NOT NULL
+		  AND price_per_unit IS NOT NULL;
+
+	-- Fill price_per_unit
+		
+		UPDATE invalid_data
+		SET price_per_unit = total_spent / quantity
+		WHERE price_per_unit IS NULL
+		  AND total_spent IS NOT NULL
+		  AND quantity IS NOT NULL;
+
+	-- Fill total_spent
+		
+		UPDATE invalid_data
+		SET total_spent = quantity * price_per_unit
+		WHERE total_spent IS NULL
+		  AND quantity IS NOT NULL
+		  AND price_per_unit IS NOT NULL;</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%202%20-%20Cafe%20Sales%20Performance%20Analysis/02_Scripts/03_invalid_data_flagging.sql" target="_blank">Source: Scripts/03_invalid_data_flagging.sql</a></i></p>	
+		
+								<h3>C. Data Warehouse Layer</h3>
+								<p>After cleaning the data, the next step is building the <strong>data mart layer</strong>. This layer uses a <strong>star schema</strong>, which is commonly used in analytical systems because it simplifies joins and improves query performance.</p>
+
+								<p style="margin: 0 0;">The warehouse consists of:</p> <br>
+
+								<p style="margin: 0 0;"><strong>Dimension Tables</strong></p>
+								<ul>
+									<li><code>dim_product</code></li>
+									<li><code>dim_payment</code></li>
+									<li><code>dim_channel</code></li>
+									<li><code>dim_category</code></li>
+									<li><code>dim_calendar</code></li>
+								</ul>
+
+								<p style="margin: 0 0;"><strong>Fact Table</strong></p>
+								<ul>
+									<li><code>fact_sales</code></li>
+								</ul>
+
+								<p>The <strong>fact table stores measurable events</strong>, with one row per transaction, <strong>while dimension tables store descriptive attributes</strong> such as product, payment method, and channel.</p>
+
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">-- Example: dimension table
+CREATE TABLE dim_product(
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    item VARCHAR(50) UNIQUE NOT NULL,
+    price DECIMAL(10,2)
+);
+
+INSERT INTO dim_product (item, price)
+SELECT DISTINCT item, price_per_unit
+FROM clean_data
+ORDER BY item;
+
+-- Fact table, linked to each dimension via foreign keys
+CREATE TABLE fact_sales (
+    transaction_id VARCHAR(20) PRIMARY KEY,
+    product_id INT NOT NULL,
+    payment_id INT NOT NULL,
+    channel_id INT NOT NULL,
+    transaction_date DATE,
+    quantity SMALLINT UNSIGNED NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES dim_product(product_id),
+    FOREIGN KEY (payment_id) REFERENCES dim_payment(payment_id),
+    FOREIGN KEY (channel_id) REFERENCES dim_channel(channel_id),
+    FOREIGN KEY (transaction_date) REFERENCES dim_calendar(calendar_date)
+);
+
+INSERT INTO fact_sales (transaction_id, product_id, payment_id, channel_id, transaction_date, quantity)
+SELECT
+	cd.transaction_id,
+	dp.product_id,
+	dp2.payment_id,
+	dc.channel_id,
+	cd.transaction_date,
+	cd.quantity
+FROM
+	clean_data cd
+LEFT JOIN dim_product dp ON
+	cd.item = dp.item
+LEFT JOIN dim_payment dp2 ON
+	cd.payment_method = dp2.payment_method
+LEFT JOIN dim_channel dc ON
+	cd.location = dc.channel;</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%202%20-%20Cafe%20Sales%20Performance%20Analysis/02_Scripts/04_data_modelling.sql" target="_blank">Source: Scripts/04_data_modelling.sql</a></i></p>
+
+<p>Records that couldn't be fully identified during cleaning, but still had complete quantity and price data, were reintegrated into the fact table under an <strong>"Unidentified"</strong> category, flagged per dimension. This allowed them to still contribute to revenue and order metrics, instead of being excluded from reporting entirely.</p>
+
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">-- Add an "Unidentified" entry to each dimension table
+INSERT INTO dim_category (category_id, category)
+VALUES (-1, "Unidentified");
+
+INSERT INTO dim_product (product_id, category_id, item, price)
+VALUES (-1, -1, "Unidentified 3$", 3), (-2, -1, "Unidentified 4$", 4);
+
+INSERT INTO dim_payment (payment_id, payment_method)
+VALUES (-1, "Unidentified");
+
+INSERT INTO dim_channel (channel_id, channel)
+VALUES (-1, "Unidentified");
+
+-- Add flag columns to fact_sales
+ALTER TABLE fact_sales 
+ADD COLUMN invalid_product BOOLEAN NOT NULL DEFAULT FALSE,
+ADD COLUMN invalid_payment_method BOOLEAN NOT NULL DEFAULT FALSE,
+ADD COLUMN invalid_channel BOOLEAN NOT NULL DEFAULT FALSE;
+
+-- Reintegrate partially-recoverable records into fact_sales
+INSERT INTO fact_sales (transaction_id, product_id, payment_id, channel_id, quantity, invalid_product)
+SELECT 
+    qid.transaction_id,
+    CASE
+        WHEN qid.item = "Unidentified 3$" THEN -1
+        WHEN qid.item = "Unidentified 4$" THEN -2
+        ELSE dp.product_id
+    END,
+    COALESCE(dp2.payment_id, -1),
+    COALESCE(dc.channel_id, -1),
+    qid.quantity,
+    qid.invalid_item
+FROM quantifiable_invalid_data qid
+LEFT JOIN dim_product dp ON qid.item = dp.item
+LEFT JOIN dim_payment dp2 ON qid.payment_method = dp2.payment_method
+LEFT JOIN dim_channel dc ON qid.location = dc.channel;</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%202%20-%20Cafe%20Sales%20Performance%20Analysis/02_Scripts/05_include_invalid_quant_data.sql" target="_blank">Source: Scripts/05_include_invalid_quant_data.sql</a></i></p>
+
+<h3>D. Consumption Layer</h3>
+<p>The final layer connects the star schema to <strong>Power BI</strong>, turning the data model into an interactive dashboard for business reporting and decision-making.</p>
+
+<p style="margin: 0 0;">The dashboard covers:</p>
+<ul>
+    <li>Total revenue, orders, and average order value (AOV)</li>
+    <li>Monthly order trends</li>
+    <li>Breakdown by category, payment method, and sales channel</li>
+    <li>A toggle to switch between full data and clean-data-only views</li>
+</ul>
+
+<div class="image main" style="margin: 0 0;"><img src="content_images/Cafe_Sales_Dashboard.jpg" alt="Cafe Sales Dashboard" /></div><br>
+
+<p style="margin: 0 0;"><strong>Key insights:</strong></p>
+<ul>
+    <li>Salad was the highest-ordered product</li>
+    <li>Digital Wallet was the most preferred payment method</li>
+    <li>Takeaway was the most preferred sales channel</li>
+</ul>
+
+				<h2>View the Full Project</h2>
+				<p style="margin: 0 0;">The complete project, including all SQL scripts and the Power BI file, is available on GitHub.</p>
+				<ul>
+					<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%202%20-%20Cafe%20Sales%20Performance%20Analysis" target="_blank">Full Repository</a></li>
+					<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%202%20-%20Cafe%20Sales%20Performance%20Analysis/01_Raw_Data/Data_Source" target="_blank">01 Raw Data</a></li>
+					<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%202%20-%20Cafe%20Sales%20Performance%20Analysis/02_Scripts" target="_blank">02 Scripts</a></li>
+					<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%202%20-%20Cafe%20Sales%20Performance%20Analysis/03_Dashboard" target="_blank">03 Dashboard</a></li>
+				</ul>
+			</div>
+
+			<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>Jl. Rawa Sawah II No. 6<br />
+								DKI Jakarta, Jakarta Pusat</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p>081211351830</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p>hafizhaikalfahreza@gmail.com</p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.instagram.com/hafizhaikalfahr/" class="icon brands alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+									<li><a href="https://github.com/haikalfahr" class="icon brands alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<!-- Prism.js: script yang melakukan syntax highlighting (mewarnai keyword, komentar, dll) -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+	</body>
+</html>

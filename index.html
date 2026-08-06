@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Project 1 - Chocolate Sales Performance Analysis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- Prism.js: dipakai untuk syntax highlighting pada code block SQL di bawah -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+
+		<!-- CSS internal untuk styling code block -->
+		<style>
+			.code-block-wrap {
+				margin: 1.5em 0 2em 0;
+			}
+
+			.code-block-wrap .code-label {
+				font-weight: 600;
+				font-size: 1.05em;
+				margin-bottom: 0.6em;
+			}
+
+			pre[class*="language-"].cafe-code {
+				background: #f6f6f8;
+				border: 1px solid #e5e5ea;
+				border-radius: 10px;
+				padding: 1.4em 1.6em;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+				overflow-x: auto;
+				font-size: 0.92em;
+				line-height: 1.65;
+			}
+
+			pre[class*="language-"].cafe-code code {
+				font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+				text-shadow: none;
+			}
+
+			.cafe-code .token.comment { color: #2e8b57; font-style: italic; }
+			.cafe-code .token.keyword { color: #d6249f; font-weight: 600; }
+			.cafe-code .token.function { color: #d6249f; }
+			.cafe-code .token.string { color: #a31515; }
+			.cafe-code .token.number { color: #098658; }
+			.cafe-code .token.operator { color: #444; }
+			.cafe-code .token.punctuation { color: #444; }
+			.cafe-code .token.column,
+			.cafe-code .token.table,
+			.cafe-code .token.plain { color: #1a1a1a; }
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Intro -->
+					<div id="intro">
+						<h1>Hafiz Haikal Fahreza<br /> data analytics portfolio
+						</h1>
+						<p>Data Analyst well versed in Excel, SQL, Power BI, and Python <a href="https://www.linkedin.com/in/hafiz-haikal-fahreza-3b91b3308/">
+							<br>@hafizhaikalfahreza</a></p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly ">Continue</a></li>
+						</ul>
+					</div>
+				
+				<!-- Header -->
+					<header id="header">
+						<a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main" class="logo" target="_blank">View All Projects</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Project 1</a></li>
+							<li><a href="project2.html">Project 2</a></li>
+							<li><a href="project3.html">Project 3</a></li>
+							<li><a href="project4.html">Project 4</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.instagram.com/hafizhaikalfahr/" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/haikalfahr" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+
+								<header class="major">
+									<h1>Chocolate Sales Performance Analysis</h1>
+									<p>Tools: MySQL (Data Profiling, Error Logging, Cleaning & Modelling) · Power BI (Visualization)</p>
+								</header>
+								<div class="image main"><img src="content_images/Chocolate_Sales_Executive_Summary.jpg" alt="Chocolate Sales Executive Summary Dashboard" /></div>
+
+								<p>Real-world data warehouses rarely deal with a single messy table. Instead, they deal with multiple related tables, each with its own quality issues, and a set of relationships between them that also need to stay consistent. This project simulates that scenario using a multi-table chocolate sales dataset, and builds a traceable system for detecting, logging, and resolving data quality issues before the data reaches a star schema and a Power BI dashboard.</p>
+
+								<p style="margin: 0 0;">The project includes:</p>
+								<ul>
+									<li>Multi-table data ingestion into MySQL</li>
+									<li>Systematic data profiling (duplicates, inconsistencies, logical relationships, orphan records)</li>
+									<li>A structured error logging system with an Error Catalog and Error Log</li>
+									<li>SQL-based data cleaning, traced back to logged errors</li>
+									<li>A dimensional star schema data model</li>
+									<li>A multi-page Power BI dashboard for analytics and insights</li>
+								</ul>
+
+								<h2>The Dataset</h2>
+								<p>The dataset used in this project is the Chocolate Sales Dataset (2023–2024), publicly available on Kaggle.</p>
+								<p>Dataset link: <br><a href="https://www.kaggle.com/datasets/ssssws/chocolate-sales-dataset-2023-2024/data" target="_blank">https://www.kaggle.com/datasets/ssssws/chocolate-sales-dataset-2023-2024/data</a></p>
+								<p>Unlike a single flat file, this dataset is split across five related tables: <code>customers</code>, <code>products</code>, <code>stores</code>, <code>calendar</code>, and <code>sales</code>. Because the data spans multiple tables, it introduces issues that a single-table dataset can't, such as mismatched values between related columns, orphan foreign keys, and logical inconsistencies across tables. This makes it well suited for practicing relational data quality management.</p>
+
+								<h2>Project Architecture</h2>
+								<p>The project follows a typical data warehouse architecture with the following layers:</p>
+								<ol>
+									<li><strong>Raw Layer:</strong> original tables imported from the source, kept untouched.</li>
+									<li><strong>Staging Layer:</strong> data profiled, logged, and cleaned to improve quality and consistency.</li>
+									<li><strong>Data Warehouse Layer:</strong> data modeled into a star schema, focused on analytical reporting.</li>
+									<li><strong>Consumption Layer:</strong> an interactive dashboard for business users.</li>
+								</ol>
+
+								<h3>A. Raw Layer</h3>
+								<p>This layer contains the original tables imported from the source files, stored in their raw format without any transformations.</p>
+
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">CREATE DATABASE chocolate_company;
+USE chocolate_company;
+
+-- CSV tables imported through GUI
+
+-- Rename all imported tables as raw tables
+RENAME TABLE
+    customers TO raw_customers,
+    products TO raw_products,
+    calendar TO raw_calendar,
+    stores TO raw_stores,
+    sales TO raw_sales;</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%201%20-%20Chocolate%20Sales%20Performance%20Analysis/02_Scripts/01_initialization.sql" target="_blank">Source: Scripts/01_initialization.sql</a></i></p>
+
+								<h3>B. Staging Layer</h3>
+								<p>The staging layer is where all data quality work happens before anything reaches the warehouse. A staging table was created for each raw table, then the data was profiled, tracked through an error logging system, and cleaned, all while staying fully traceable back to the original finding.</p>
+
+								<h4>1. Data Profiling</h4>
+								<p>Each staging table was systematically checked across four categories: duplicate records, inconsistent values, logical relationships between columns, and orphan foreign keys against related tables.</p>
+								<p style="margin: 0 0;">Checks performed included:</p>
+								<ul>
+									<li>Duplicate ID and duplicate attribute checks across all five tables</li>
+									<li>Value consistency checks per column</li>
+									<li>Logical relationship checks (e.g. category vs. product name, city vs. country, join date vs. order date)</li>
+									<li>Orphan record checks between <code>sales</code> and its related dimension tables</li>
+								</ul>
+
+								<h5>Example: checking a logical relationship</h5>
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">-- category is supposed to match the first word of product_name
+SELECT
+    SUBSTRING_INDEX(product_name, " ", 1) AS correct_category,
+    category AS false_category
+FROM staging_products
+WHERE SUBSTRING_INDEX(product_name, " ", 1) != category;
+
+-- Finding: category column doesn't match the first word of product_name
+-- Error Logging: see below</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%201%20-%20Chocolate%20Sales%20Performance%20Analysis/02_Scripts/03_data_profiling.sql" target="_blank">Source: Scripts/03_data_profiling.sql</a></i></p>
+
+								<h4>2. Error Logging System</h4>
+								<p>Rather than fixing issues on the spot, every finding from profiling was logged into a structured system: an <strong>Error Catalog</strong>, which defines each type of error, and an <strong>Error Log</strong>, which records every occurrence along with its resolution status. This keeps every issue traceable: what was wrong, where, when it was detected, and when (or if) it was resolved.</p>
+
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">CREATE TABLE staging_error_catalog (
+    error_code VARCHAR(50) PRIMARY KEY,
+    error_name VARCHAR(50) NOT NULL UNIQUE,
+    error_description VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE staging_error_log (
+    error_log_id INT PRIMARY KEY AUTO_INCREMENT,
+    table_name VARCHAR(50) NOT NULL,
+    record_id VARCHAR(50) NOT NULL,
+    error_code VARCHAR(50) NOT NULL,
+    error_status VARCHAR(15) NOT NULL DEFAULT "UNSOLVED",
+    detected_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    resolved_at DATETIME NULL,
+    resolution_note VARCHAR(100) NULL,
+
+    UNIQUE KEY uq_error_log (table_name, record_id, error_code),
+    CONSTRAINT fk_log_error_code FOREIGN KEY (error_code) REFERENCES staging_error_catalog(error_code)
+);
+
+-- Example: logging the category mismatch found during profiling
+INSERT INTO staging_error_catalog (error_code, error_name, error_description)
+VALUES ("ERR_CAT_MISMATCH", "Category Mismatch", "Category value does not match the first word of product_name in staging_products");
+
+INSERT INTO staging_error_log (table_name, record_id, error_code)
+SELECT "staging_products", product_id, "ERR_CAT_MISMATCH"
+FROM staging_products
+WHERE SUBSTRING_INDEX(product_name, " ", 1) != category;</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%201%20-%20Chocolate%20Sales%20Performance%20Analysis/02_Scripts/04_error_logging.sql" target="_blank">Source: Scripts/04_error_logging.sql</a></i></p>
+
+<p>Not every issue found during profiling was treated as an error to fix. Some findings, such as customers sharing identical demographic profiles or products sharing identical attributes under different IDs, were reviewed and deliberately accepted as-is, since there wasn't enough evidence to confirm they were true duplicates rather than legitimate separate records.</p>
+
+								<h4>3. Data Cleaning</h4>
+								<p>Each logged error was resolved directly against its root cause, then marked as <code>SOLVED</code> in the Error Log, closing the loop between detection and resolution.</p>
+
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">-- Correct the category mismatch found and logged earlier
+UPDATE staging_products
+SET category = SUBSTRING_INDEX(product_name, " ", 1)
+WHERE SUBSTRING_INDEX(product_name, " ", 1) != category;
+
+-- Update the error status once resolved
+UPDATE staging_error_log
+SET
+    error_status = "SOLVED",
+    resolved_at = CURRENT_TIMESTAMP
+WHERE
+    error_code = "ERR_CAT_MISMATCH" AND
+    error_status = "UNSOLVED";</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%201%20-%20Chocolate%20Sales%20Performance%20Analysis/02_Scripts/05_data_cleaning.sql" target="_blank">Source: Scripts/05_data_cleaning.sql</a></i></p>
+
+<p>Two issues found during profiling couldn't be resolved through cleaning: transactions with an order date earlier than the customer's join date, and a small number of orphan <code>product_id</code> values in the sales table with no matching product. These were kept logged as <code>UNSOLVED</code>, and carried forward into the warehouse layer with a flag instead of being silently dropped.</p>
+
+								<h3>C. Data Warehouse Layer</h3>
+								<p>The cleaned staging data was restructured into a <strong>star schema</strong>, which simplifies joins and improves query performance for analytical reporting.</p>
+
+								<p style="margin: 0 0;">The warehouse consists of:</p>
+
+								<p style="margin: 0 0;"><strong>Dimension Tables</strong></p>
+								<ul>
+									<li><code>dim_customers</code></li>
+									<li><code>dim_products</code></li>
+									<li><code>dim_stores</code></li>
+									<li><code>dim_calendar</code></li>
+								</ul>
+
+								<p style="margin: 0 0;"><strong>Fact Table</strong></p>
+								<ul>
+									<li><code>fact_sales</code></li>
+								</ul>
+
+								<p>The <strong>fact table stores measurable events</strong>, with one row per order, <strong>while dimension tables store descriptive attributes</strong> such as customer demographics, product details, and store location.</p>
+
+<div class="code-block-wrap">
+<pre class="cafe-code language-sql"><code class="language-sql">CREATE TABLE fact_sales (
+    order_id VARCHAR(20) PRIMARY KEY,
+    order_date DATE NOT NULL,
+    product_id VARCHAR(20) NOT NULL,
+    store_id VARCHAR(20) NOT NULL,
+    customer_id VARCHAR(20) NOT NULL,
+    quantity SMALLINT NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL,
+    discount DECIMAL(10,2) NOT NULL,
+    revenue DECIMAL(10,2) NOT NULL,
+    cost DECIMAL(10,2) NOT NULL,
+    profit DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_fact_sales_calendar FOREIGN KEY (order_date) REFERENCES dim_calendar (date),
+    CONSTRAINT fk_fact_sales_product  FOREIGN KEY (product_id) REFERENCES dim_products (product_id),
+    CONSTRAINT fk_fact_sales_store    FOREIGN KEY (store_id) REFERENCES dim_stores (store_id),
+    CONSTRAINT fk_fact_sales_customer FOREIGN KEY (customer_id) REFERENCES dim_customers (customer_id)
+);
+
+-- Orphan product_id values are mapped to a placeholder product
+-- instead of being excluded from the fact table
+INSERT INTO fact_sales (order_id, order_date, product_id, store_id, customer_id, quantity, unit_price, discount, revenue, cost, profit)
+SELECT
+    s.order_id, s.order_date,
+    COALESCE(p.product_id, "Orphan Product"),
+    s.store_id, s.customer_id, s.quantity,
+    s.unit_price, s.discount, s.revenue, s.cost, s.profit
+FROM staging_sales s
+LEFT JOIN dim_products p ON s.product_id = p.product_id;</code></pre>
+</div>
+<p><i><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%201%20-%20Chocolate%20Sales%20Performance%20Analysis/02_Scripts/06_data_transformation.sql" target="_blank">Source: Scripts/06_data_transformation.sql</a></i></p>
+
+<p>Records tied to unresolved errors, such as orphan products and orders placed before a customer's join date, were kept in <code>fact_sales</code> and flagged with boolean columns (<code>is_orphan_product</code>, <code>is_invalid_order_date</code>), so they could still be included in revenue and order metrics while remaining identifiable for further review.</p>
+
+								<h3>D. Consumption Layer</h3>
+								<p>The star schema was connected to Power BI to build a multi-page dashboard covering executive reporting, customer analytics, product performance, and store performance.</p>
+
+								<p style="margin: 0 0;">The dashboard includes:</p>
+								<ul>
+									<li><strong>Executive Summary:</strong> revenue, profit, orders, profit margin, and ROI trends</li>
+									<li><strong>Customer Analysis:</strong> AOV, CLV, retention and churn rate, customer segments</li>
+									<li><strong>Product Analysis:</strong> performance by product, category, cocoa percentage, and brand</li>
+									<li><strong>Store Analysis:</strong> performance by store, country, and store type</li>
+									<li><strong>Map:</strong> geographic distribution of store performance</li>
+									<li><strong>Dictionary:</strong> a data dictionary page documenting every field for end users</li>
+								</ul>
+
+								<div class="image main"><img src="content_images/Chocolate_Sales_Executive_Summary.jpg" alt="Chocolate Sales Executive Summary" /></div>
+								<div class="image main"><img src="content_images/Chocolate_Sales_Customer_Analysis.jpg" alt="Chocolate Sales Customer Analysis" /></div>
+								<div class="image main"><img src="content_images/Chocolate_Sales_Product_Analysis.jpg" alt="Chocolate Sales Product Analysis" /></div>
+								<div class="image main"><img src="content_images/Chocolate_Sales_Store_Analysis.jpg" alt="Chocolate Sales Store Analysis" /></div>
+								<div class="image main"><img src="content_images/Chocolate_Sales_Map.jpg" alt="Chocolate Sales Map" /></div>
+
+								<p style="margin: 0 0;"><strong>Key insights:</strong></p>
+								<ul>
+								<li>Dark Chocolate 50% was the top-selling product by revenue, generating over $76,000 in a single month</li>
+								<li>Airport stores generated the highest revenue among all store types, ahead of Mall, Online, and Retail</li>
+								<li>Australia led total revenue by country, followed by Canada and the UK</li>
+								<li>The customer base was nearly evenly split between loyalty and non-loyalty members, and between male and female customers</li>
+								<li>Customers aged 45 to 64 generated the highest revenue across all age groups</li>
+								</ul>
+
+								<h2>View the Full Project</h2>
+								<p style="margin: 0 0;">The complete project, including all SQL scripts and the Power BI file, is available on GitHub.</p>
+								<ul>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%201%20-%20Chocolate%20Sales%20Performance%20Analysis" target="_blank">Full Repository</a></li>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/blob/main/Project%201%20-%20Chocolate%20Sales%20Performance%20Analysis/01_Raw_Data/Data_Source" target="_blank">01 Raw Data</a></li>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%201%20-%20Chocolate%20Sales%20Performance%20Analysis/02_Scripts" target="_blank">02 Scripts</a></li>
+									<li><a href="https://github.com/haikalfahr/Hafiz_Haikal_Fahreza_Portfolio/tree/main/Project%201%20-%20Chocolate%20Sales%20Performance%20Analysis/03_Dashboard" target="_blank">03 Dashboard</a></li>
+								</ul>
+
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>Jl. Rawa Sawah II No. 6<br />
+								DKI Jakarta, Jakarta Pusat</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p>081211351830</p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p>hafizhaikalfahreza@gmail.com</p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://www.instagram.com/hafizhaikalfahr/" class="icon brands alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+									<li><a href="https://github.com/haikalfahr" class="icon brands alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Hafiz Haikal Fahreza</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<!-- Prism.js: syntax highlighting -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+	</body>
+</html>
